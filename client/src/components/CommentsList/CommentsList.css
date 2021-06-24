@@ -1,0 +1,15 @@
+.comments-list {
+    padding-bottom: 10px;
+}
+
+.comments-list p {
+    margin: 0 !important;
+}
+
+.comments-list .show-more {
+    color: #808080;
+    cursor: pointer;
+    text-decoration: none;
+    padding-left: 10px;
+    font-size: 0.85rem;
+}

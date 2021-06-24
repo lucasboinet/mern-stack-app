@@ -1,0 +1,29 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.post-list {
+  width: 600px;
+  padding: 10px 0;
+}
+
+.add-post-link {
+  width: 100%;
+  display: block;
+  text-align: center;
+  background-color: #74b9ff;
+  border: 1px solid #68a6e4;
+  border-radius: 3px;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 0;
+}
+
+@media only screen and (max-width: 620px) {
+  .post-list {
+    width: 100%;
+  }
+}

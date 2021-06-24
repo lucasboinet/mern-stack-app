@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
+import './AddPost.css';
 import axios from 'axios';
 
 export default class AddPost extends Component {
@@ -24,22 +24,21 @@ export default class AddPost extends Component {
             image: this.state.image,
             description : this.state.description,
             postedBy: this.state.postedBy,
-            publishedAt: new Date(),
-            updatedAt: new Date()
+            publishedAt: new Date()
         }
 
         axios.post('http://localhost:8080/api/posts', data)
-             .then(res => {
+            .then(res => {
                 this.setState({
                     image: [],
                     description : "",
                     postedBy: ""
                 })
                 this.props.history.push('/');
-             })
-             .catch(err => {
-                 console.log("Error : axios post in AddPost.js");
-             })
+            })
+            .catch(err => {
+                console.log("Error : axios post in AddPost.js");
+            });
     }
 
     render() {
@@ -53,6 +52,6 @@ export default class AddPost extends Component {
                     <input type="submit" />
                 </form>
             </div>
-        )
+        );
     }
 }

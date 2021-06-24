@@ -2,13 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Post = require('../../models/Post');
-
-/** 
-@route GET api/posts/test
-@description tests posts route
-@access Public 
-*/
-router.get('/test', (req, res) => res.send('posts route testing!'));
+const Comment = require('../../models/Comment');
 
 /** 
 @route GET api/posts
@@ -17,9 +11,13 @@ router.get('/test', (req, res) => res.send('posts route testing!'));
 */
 router.get('/', (req, res) => {
     Post.find()
-        .then(posts => res.json(posts))
+        .populate('comments')
+        .then(completePosts => {
+            res.json(completePosts)
+        })
         .catch(err => res.status(404).json({nopostsfound: "No posts found"}));
 })
+
 
 /** 
 @route POST api/posts
@@ -28,8 +26,42 @@ router.get('/', (req, res) => {
 */
 router.post('/', (req, res) => {
     Post.create(req.body)
-        .then(post => res.json({msg: 'Post added successfully'}))
+        .then(post => {
+            res.json({msg: 'Post added successfully'})
+        })
         .catch(err => res.status(400).json({error: "Unable to add this post", err: err}));
+})
+
+/** 
+@route GET api/posts/:id
+@description get post
+@access Public 
+*/
+router.get('/:id', (req, res) => {
+    Post.findOne({_id: req.params.id })
+        .populate('comments')
+        .then(post => {
+            res.json({post: post})
+        })
+        .catch(err => {
+            res.status(400).json({error: "Unable to find post: " + req.params.id});
+        })
+})
+
+/** 
+@route POST api/posts/comment
+@description add comment
+@access Public 
+*/
+router.post('/comment', (req, res) => {
+    Comment.create({postedBy: "User", message: req.body.message})
+        .then(comment => {
+            return Post.findOneAndUpdate({ _id: req.body.id }, { $push: {comments: comment._id }}, {new: true}).populate('comments');
+        }) 
+        .then(post => {
+            res.json({msg: 'Comment added successfully', post: post})
+        })
+        .catch(err => res.status(400).json({error: "Unable to add this comment", err: err}));
 })
 
 /** 
