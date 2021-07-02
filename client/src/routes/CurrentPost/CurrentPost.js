@@ -25,7 +25,9 @@ class CurrentPost extends Component {
     render(){
 
         return (
-            <div>{this.state.data.postedBy} {this.state.data.description}</div>
+            <div>
+                <div>{this.state.data.postedBy} {this.state.data.description}</div>
+            </div>
         )
     }
 }

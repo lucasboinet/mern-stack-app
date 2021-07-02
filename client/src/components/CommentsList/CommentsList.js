@@ -16,13 +16,13 @@ export default class CommentsList extends Component {
     }
 
     componentDidMount(){
-        this.setState({data: this.props.data})
+        this.setState({data: this.props.data.reverse()})
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.data !== prevProps.data)
         {
-            this.setState({data : this.props.data})
+            this.setState({data : this.props.data.reverse()})
         }
     }
 

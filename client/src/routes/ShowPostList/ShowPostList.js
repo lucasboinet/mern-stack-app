@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './ShowPostList.css';
 import axios from 'axios';
-
-import Post from '../Post/Post.js';
+import Post from '../../components/Post/Post.js';
 
 export default class ShowPostList extends Component {
     constructor() {

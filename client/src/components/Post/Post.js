@@ -9,7 +9,8 @@ export default class Post extends Component {
         super(props);
         this.state = {
             data: this.props.data,
-            value: ''
+            value: '',
+            liked: false
         }
     }
 
@@ -28,6 +29,10 @@ export default class Post extends Component {
         this.setState({value: event.target.value})
     }
 
+    likePost = () => {
+        this.setState({liked: !this.state.liked});
+    }
+
     render() {
         return (
             <div className="post">
@@ -37,6 +42,10 @@ export default class Post extends Component {
                 </div>
                 <img src="https://via.placeholder.com/600" alt={`${this.state.data.postedBy}'s post ${this.state.data.index}`} />
                 <div className="post-footer">
+                    <div className="post-controls">
+                        <span className="heart-icon" onClick={this.likePost}>{this.state.liked ? <i className="fa fa-heart" aria-hidden="true" ></i> : <i className="fa fa-heart-o" aria-hidden="true" ></i>}</span>
+                        <span className="comment-icon"><i class="far fa-comment"></i></span>
+                    </div>
                     <p><span className="post-user-tag">{this.state.data.postedBy}</span> {this.state.data.description}</p>
                     <CommentsList data={this.state.data.comments} postId={this.state.data._id} postedBy={this.state.data.postedBy} />
                 </div>

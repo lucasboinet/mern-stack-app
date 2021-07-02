@@ -43,7 +43,7 @@ export default class AddPost extends Component {
 
     render() {
         return (
-            <div className="AddPost">
+            <div className="container">
                 <Link to="/">Show All Posts</Link>
                 <p>Add new post</p>
                 <form noValidate onSubmit={this.onSubmit}>
