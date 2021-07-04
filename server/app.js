@@ -4,14 +4,12 @@ var cors = require('cors');
 
 const posts = require('./routes/api/posts');
 const user = require('./routes/api/user');
-const { urlencoded } = require('body-parser');
 
 const app = express();
 
 connectDB();
 
 app.use(express.json());
-//app.use(urlencoded({ extended: false }))
 app.use(cors({ origin: true, credentials: true }));
 
 app.get('/', (req, res) => res.send('Hello world!'));

@@ -44,7 +44,7 @@ export default class Post extends Component {
                 <div className="post-footer">
                     <div className="post-controls">
                         <span className="heart-icon" onClick={this.likePost}>{this.state.liked ? <i className="fa fa-heart" aria-hidden="true" ></i> : <i className="fa fa-heart-o" aria-hidden="true" ></i>}</span>
-                        <span className="comment-icon"><i class="far fa-comment"></i></span>
+                        <span className="comment-icon"><i className="far fa-comment"></i></span>
                     </div>
                     <p><span className="post-user-tag">{this.state.data.postedBy}</span> {this.state.data.description}</p>
                     <CommentsList data={this.state.data.comments} postId={this.state.data._id} postedBy={this.state.data.postedBy} />

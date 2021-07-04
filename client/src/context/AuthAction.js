@@ -1,10 +1,10 @@
-export const LoginStart = (user) => ({
+export const LoginStart = (sessid) => ({
     type: "LOGIN_START"
 })
 
-export const LoginSuccess = (user) => ({
+export const LoginSuccess = (sessid) => ({
     type: "LOGIN_SUCCESS",
-    payload: user
+    payload: sessid
 
 })
 
@@ -13,9 +13,9 @@ export const LoginFailure = (error) => ({
     payload: error
 })
 
-export const LogoutSuccess = (user) => ({
+export const LogoutSuccess = (sessid) => ({
     type: "LOGOUT_SUCCESS",
-    payload: user
+    payload: sessid
 })
 
 export const LogoutFailure = (error) => ({

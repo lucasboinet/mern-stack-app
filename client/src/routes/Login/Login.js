@@ -11,8 +11,8 @@ export default function Login () {
         dispatch({type: "LOGIN_START"});
         try {
             const res = await axios.post('http://localhost:8080/api/user/login', userCredentials)
-            sessionStorage.setItem('user', JSON.stringify(res.data.user));
-            dispatch({type: "LOGIN_SUCCESS", payload: res.data.user})
+            localStorage.setItem('SESSID', JSON.stringify(res.data.sessid));
+            dispatch({type: "LOGIN_SUCCESS", payload: res.data.sessid})
         }catch(err) {
             dispatch({type: "LOGIN_FAILURE", payload: err})
         }
